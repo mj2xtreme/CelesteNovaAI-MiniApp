@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CelesteNova AI</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        button { padding: 10px 20px; font-size: 18px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>Welcome to CelesteNova AI</h2>
+    <p id="user-info">Loading...</p>
+    <button onclick="sendData()">Get Crypto Data</button> 
+
+    <script>
+        let tg = window.Telegram.WebApp;
+        tg.expand(); // Expand app to full view
+
+        document.getElementById("user-info").innerText = `Hello, ${tg.initDataUnsafe.user?.first_name || "User"}!`;
+
+        function sendData() {
+            tg.sendData(JSON.stringify({ action: "get_crypto" }));
+        }
+    </script>
+</body>
+</html>
